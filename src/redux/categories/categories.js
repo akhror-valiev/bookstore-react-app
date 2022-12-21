@@ -1,4 +1,4 @@
-const CHECK_STATUS = 'CHECK_STATUS';
+const CHECK_STATUS = 'Bookstore/categories/checkStatus';
 
 const checkStatus = () => ({
   type: CHECK_STATUS,
