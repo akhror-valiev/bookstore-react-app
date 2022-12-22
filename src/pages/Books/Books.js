@@ -1,40 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Book from '../../components/Book/Book';
 
-const books = [{
-  id: 1,
-  typeOf: 'action',
-  bookTitle: 'first-book',
-  author: 'person1',
-  status: '10%',
-  chapter: 15,
-},
-{
-  id: 1,
-  typeOf: 'fiction',
-  bookTitle: 'second-book',
-  author: 'person2',
-  status: '50%',
-  chapter: 2,
+const Books = () => {
+  const books = useSelector((state) => state.books);
+  return (
+    <div className="container">
+      {
+        books.map((book) => (
+          // eslint-disable-next-line react/jsx-key
+          <Book
+            id={book.id}
+            title={book.title}
+            author={book.author}
 
-}];
+          />
+        ))
+      }
 
-const Books = () => (
-  <div className="container">
-    {books.map(({
-      id, typeOf, bookTitle, author, status, chapter,
-    }) => (
-      <Book
-        key={id}
-        typeOf={typeOf}
-        bookTitle={bookTitle}
-        author={author}
-        status={status}
-        chapter={chapter}
-      />
-    ))}
-
-  </div>
-);
+    </div>
+  );
+};
 
 export default Books;
