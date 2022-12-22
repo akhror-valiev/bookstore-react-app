@@ -1,15 +1,13 @@
-/* eslint-disable react/button-has-type */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { removeBook } from '../../redux/books/books';
 
-// eslint-disable-next-line react/prop-types
 const Book = ({ id, title, author }) => {
   const dispatch = useDispatch();
 
   const handleRemoveClick = () => {
-    // eslint-disable-next-line object-shorthand
-    dispatch(removeBook({ id: id }));
+    dispatch(removeBook({ id }));
   };
 
   return (
@@ -18,7 +16,7 @@ const Book = ({ id, title, author }) => {
         <h2>{title}</h2>
         <p>{author}</p>
         <button type="button">Comments</button>
-        <button onClick={handleRemoveClick}>Remove</button>
+        <button type="button" onClick={handleRemoveClick}>Remove</button>
         <button type="button">Edit</button>
         <p>
 
@@ -32,4 +30,9 @@ const Book = ({ id, title, author }) => {
   );
 };
 
+Book.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+};
 export default Book;

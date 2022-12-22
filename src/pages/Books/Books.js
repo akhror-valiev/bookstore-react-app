@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Book from '../../components/Book/Book';
 
@@ -8,9 +9,8 @@ const Books = () => {
     <div className="container">
       {
         books.map((book) => (
-          // eslint-disable-next-line react/jsx-key
           <Book
-            id={book.id}
+            key={book.id}
             title={book.title}
             author={book.author}
 
@@ -20,6 +20,12 @@ const Books = () => {
 
     </div>
   );
+};
+
+Book.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
 };
 
 export default Books;

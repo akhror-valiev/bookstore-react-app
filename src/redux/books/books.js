@@ -20,13 +20,7 @@ const bookSlice = createSlice({
       };
       state.push(newBook);
     },
-    togleComplete: (state, action) => {
-      const index = state.findIndex((book) => book.id === action.payload.id);
-
-      // eslint-disable-next-line no-param-reassign
-      state[index].completed = action.payload.completed;
-    },
-    removeBook: (state, action) => state.filter((book) => book.id !== action.payload.id),
+    removeBook: (state, action) => state.filter((book) => book.key !== action.payload.id),
   },
 
 });
