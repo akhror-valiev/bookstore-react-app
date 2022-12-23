@@ -1,72 +1,49 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
+import axios from 'axios';
 
-export const getBooksAsync = createAsyncThunk('books/getBooksAsync',
-  // eslint-disable-next-line consistent-return
-  async () => {
-    const response = await fetch('https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/nCNdsVJm2y1eTVvc8LoB/books');
-    if (response.ok) {
-      const books = await response.json();
-      return { books };
+const ADD_BOOK = 'react-bookstore/books/ADD_BOOK';
+const DELETE_BOOK = 'react-bookstore/books/DELETE_BOOK';
+const BOOK_FAILURE = 'react-bookstore/books/BOOK_FAILURE';
+
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
+const identifier = 'nCNdsVJm2y1eTVvc8LoB';
+
+const books = [];
+
+const BookReducer = (state = books, action) => {
+  switch (action.type) {
+    case ADD_BOOK: {
+      const books = Object.entries(action.payload);
+      return books.map((book) => ({
+        id: book[0],
+        ...book[1][0],
+      }));
     }
-  });
+    case DELETE_BOOK:
+      return [...state.filter((book) => (book.id !== action.payload))];
+    default:
+      return state;
+  }
+};
 
-export const addBookAsync = createAsyncThunk('books/addBookAsync',
-  // eslint-disable-next-line consistent-return
-  async (payload) => {
-    const response = await fetch('https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/nCNdsVJm2y1eTVvc8LoB/books', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title: payload.title, author: payload.author }),
-    });
-    if (response.ok) {
-      const book = await response.json();
-      return { book };
-    }
-  });
+export const addBook = (book) => ({ type: ADD_BOOK, payload: book });
 
-export const deleteBookAsync = createAsyncThunk(
-  'books/deleteBookAsync',
+export const fetchBooks = () => async (dispatch) => {
+  await axios.get(`${url}/${identifier}/books`).then(
+    (response) => dispatch(addBook(response.data)),
+    (err) => dispatch({ type: BOOK_FAILURE, err }),
+  );
+};
 
-  // eslint-disable-next-line consistent-return
-  async (payload) => {
-    const response = await fetch(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/nCNdsVJm2y1eTVvc8LoB/books/${payload.id}`, {
-      method: 'DELETE',
-    });
-    if (response.ok) {
-      return { id: payload.id };
-    }
-  },
-);
+export const deleteBook = (id) => async (dispatch) => {
+  await axios
+    .delete(`${url}/${identifier}/books/${id}`)
+    .then(() => dispatch(fetchBooks())); return { type: DELETE_BOOK, payload: id };
+};
 
-export const bookSlice = createSlice({
-  name: 'books',
-  initialState: [],
+export const postBook = (book) => async (dispatch) => {
+  await axios
+    .post(`${url}/${identifier}/books`, book)
+    .then(() => dispatch(fetchBooks()));
+};
 
-  reducers: {
-    addBook: (state, action) => {
-      const book = {
-        id: nanoid(),
-        title: action.payload.title,
-        author: action.payload.author,
-      };
-      state.push(book);
-    },
-    removeBook: (state, action) => state.filter((book) => book.id !== action.payload.id),
-  },
-
-  extraReducers: {
-    [getBooksAsync.fulfilled]: (state, action) => action.payload.books,
-    [addBookAsync.fulfilled]: (state, action) => {
-      state.push(action.payload.book);
-    },
-    // eslint-disable-next-line max-len
-    [deleteBookAsync.fulfilled]: (state, action) => state.filter((book) => book.id !== action.payload.id),
-  },
-
-});
-
-export const { addBook, removeBook } = bookSlice.actions;
-export default bookSlice.reducer;
+export default BookReducer;
