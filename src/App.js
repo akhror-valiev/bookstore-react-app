@@ -5,7 +5,7 @@ import {
 
 } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
+
 import Home from './pages/Home/Home';
 import Categories from './pages/Categories/Categories';
 import Books from './pages/Books/Books';
@@ -14,7 +14,7 @@ const Layout = () => (
   <div className="app">
     <Navbar />
     <Outlet />
-    <Footer />
+
   </div>
 );
 

@@ -6,64 +6,9 @@
 }
 
 body {
-  margin: 0;
   background-color: #fafafa;
-}
-
-header {
-  display: flex;
-  flex-direction: row;
-  border-bottom: solid 1px #e8e8e8;
-  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
-}
-
-.nav-items {
-  margin: 29px 30px;
-}
-
-.nav-item {
-  text-decoration: none;
-  color: var(--textcolor);
-  width: 3.688rem;
-  height: 1rem;
-  margin: 1rem 2.563rem 0.688rem 0;
-  font-size: 1.1rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-family: Montserrat, sans-serif;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 1.9px;
-}
-
-#logo {
-  width: 15rem;
-  height: 2.313rem;
-  margin: 1.5rem 2.938rem 0.125rem 8rem;
-  font-family: Montserrat, sans-serif;
-  font-size: 1.875rem;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: var(--logocolor);
-}
-
-.logo-section {
-  width: 2.813rem;
-  height: 2.813rem;
-  margin: 1.2rem 0 0 27.4rem;
-  padding: 0;
-  border: solid 1px #e8e8e8;
-  border-radius: 30px;
-}
-
-.user-icon {
-  position: relative;
-  top: 0.8rem;
-  left: 0.85rem;
-  color: var(--logocolor);
+  padding: 0 100px;
+  margin: 0 20px;
 }
 
 .single-book {
@@ -79,7 +24,7 @@ header {
   flex-direction: row;
   margin-bottom: 13px;
   margin-top: 50px;
-  width: 80%;
+  width: 90%;
   border: solid 1px #e8e8e8;
   background-color: white;
   padding: 10px 0 50px 0;
@@ -199,7 +144,6 @@ hr {
   height: 3.4rem;
   margin-top: 20px;
   border-radius: 2px;
-  margin-left: 130px;
   cursor: pointer;
 }
 
@@ -232,21 +176,22 @@ hr {
 }
 
 .Form {
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 8.2rem;
+  margin-left: 6rem;
 }
 
 form {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 input {
-  width: 60%;
+  width: 100%;
   height: 50%;
   margin: 1.188rem 2.125rem 0 0;
   padding: 20px 30px;
@@ -256,7 +201,7 @@ input {
 }
 
 .cat {
-  width: 19rem;
+  width: 30rem;
   height: 3.4rem;
   margin: 1.188rem 2.125rem 0;
   padding: 0.375rem 0.938rem 0.563rem 1rem;
@@ -301,16 +246,16 @@ input {
   color: white;
   background-color: var(--logocolor);
   border: none;
-  width: 10%;
-  height: 3.4rem;
+  width: 20%;
+  height: 3.5rem;
   border-radius: 2px;
   cursor: pointer;
 }
 
 .progress-status {
-  width: 5rem;
+  width: 4.9rem;
   height: 1.125rem;
-  margin: 0.438rem 4.938rem 0.75rem 0.75rem;
+  margin: 0.44rem 4.938rem 0.75rem 0.75rem;
   opacity: 0.5;
   font-family: "Montserrat", sans-serif;
   font-size: 0.875rem;
@@ -325,16 +270,16 @@ input {
 .test {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  margin-top: 13px;
+  margin-left: 22px;
+  margin-top: 15px;
   width: 50%;
   border-right: solid 1px #e8e8e8;
 }
 
-.progress-number {
-  width: 4.25rem;
-  height: 2.438rem;
-  margin: 0.1rem 5.75rem 0 0.688rem;
+.progress-num {
+  width: 4.3rem;
+  height: 2.5rem;
+  margin: 0.2rem 5.8rem 0 0.7rem;
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   font-weight: normal;
