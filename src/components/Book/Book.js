@@ -47,7 +47,7 @@ const Book = () => {
             </div>
             <div className="test">
               <div className="progress-info">
-                <p className="progress-number">
+                <p className="progress-num">
                   {value}
                   %
                 </p>

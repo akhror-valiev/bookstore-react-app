@@ -5,7 +5,7 @@ const DELETE_BOOK = 'react-bookstore/books/DELETE_BOOK';
 const BOOK_FAILURE = 'react-bookstore/books/BOOK_FAILURE';
 
 const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
-const identifier = 'nCNdsVJm2y1eTVvc8LoB';
+const keys = 'nCNdsVJm2y1eTVvc8LoB';
 
 const books = [];
 
@@ -28,7 +28,7 @@ const BookReducer = (state = books, action) => {
 export const addBook = (book) => ({ type: ADD_BOOK, payload: book });
 
 export const fetchBooks = () => async (dispatch) => {
-  await axios.get(`${url}/${identifier}/books`).then(
+  await axios.get(`${url}/${keys}/books`).then(
     (response) => dispatch(addBook(response.data)),
     (err) => dispatch({ type: BOOK_FAILURE, err }),
   );
@@ -36,13 +36,13 @@ export const fetchBooks = () => async (dispatch) => {
 
 export const deleteBook = (id) => async (dispatch) => {
   await axios
-    .delete(`${url}/${identifier}/books/${id}`)
+    .delete(`${url}/${keys}/books/${id}`)
     .then(() => dispatch(fetchBooks())); return { type: DELETE_BOOK, payload: id };
 };
 
 export const postBook = (book) => async (dispatch) => {
   await axios
-    .post(`${url}/${identifier}/books`, book)
+    .post(`${url}/${keys}/books`, book)
     .then(() => dispatch(fetchBooks()));
 };
 
